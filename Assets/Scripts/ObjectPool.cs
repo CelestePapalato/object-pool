@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
@@ -38,7 +39,6 @@ public class ObjectPool : MonoBehaviour
             {
                 GameObject tmp = Instantiate(poolData.objectToPool);
                 tmp.SetActive(false);
-                pool.Add(tmp);
 
                 if (!taggedPool.ContainsKey(tmp.tag))
                 {
@@ -46,6 +46,11 @@ public class ObjectPool : MonoBehaviour
                 }
                 taggedPool[tmp.tag].Add(tmp);
             }
+        }
+
+        foreach(List<GameObject> poolData in taggedPool.Values)
+        {
+            pool.AddRange(poolData);
         }
     }
 
