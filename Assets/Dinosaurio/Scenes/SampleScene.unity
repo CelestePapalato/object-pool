@@ -380,17 +380,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectsToPool:
   - objectToPool: {fileID: 2805049728941881916, guid: 7cf727588ef2f064c9f8dd217df0eb34, type: 3}
-    quantity: 4
+    quantity: 2
   - objectToPool: {fileID: 2805049728941881916, guid: 327fdbbddae52f340bee7d13e6373afb, type: 3}
-    quantity: 4
+    quantity: 2
   - objectToPool: {fileID: 7539569304040750378, guid: 2566534e2c079d048b309a4d4531b104, type: 3}
-    quantity: 4
+    quantity: 2
   - objectToPool: {fileID: 7539569304040750378, guid: d43e3cbf1b4837e4894ec58916e6cb2c, type: 3}
-    quantity: 4
+    quantity: 2
   - objectToPool: {fileID: 6598788604804776212, guid: 308665a466f8fd443b814c1b1d72611f, type: 3}
-    quantity: 4
-  - objectToPool: {fileID: 7539569304040750378, guid: d43e3cbf1b4837e4894ec58916e6cb2c, type: 3}
-    quantity: 4
+    quantity: 3
 --- !u!4 &621900922
 Transform:
   m_ObjectHideFlags: 0
