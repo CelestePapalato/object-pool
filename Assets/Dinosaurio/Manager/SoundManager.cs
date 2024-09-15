@@ -32,7 +32,7 @@ public class SoundManager : MonoBehaviour
         audioSource.clip = listaDeSonidos["perder"];
     }
 
-    public void reproducirSonido(string key)
+    public void ReproducirSonido(string key)
     {
         if(key == "perder" && audioSource.clip)
         {

@@ -36,11 +36,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.instance.empezoLaPartida() && !animator.GetBool("Start"))
-        {
-            animation_move();
-        }
         ControlInput();
+    }
+
+    private void OnEnable()
+    {
+        GameManager.OnStart += animation_move;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnStart -= animation_move;
     }
 
     void ControlInput()
@@ -79,7 +85,7 @@ public class PlayerController : MonoBehaviour
             pulsoSaltar = true;
             rb.AddForce(Vector2.up * fuerzaDeSalto, ForceMode2D.Impulse);
             onFloor = false;
-            SoundManager.instance.reproducirSonido("salto");
+            SoundManager.instance.ReproducirSonido("salto");
         }
     }
 
@@ -111,7 +117,7 @@ public class PlayerController : MonoBehaviour
     public void ContactoConObstaculo()
     {
         animation_lose();
-        GameManager.instance.perder();
+        GameManager.instance.Perder();
     }
     void animation_move()
     {

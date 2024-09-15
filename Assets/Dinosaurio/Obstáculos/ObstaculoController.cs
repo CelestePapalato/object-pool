@@ -13,6 +13,6 @@ public class ObstaculoController : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-        transform.Translate(Vector2.left * GameManager.instance.getVelocidad() * modificarVelocidad * Time.deltaTime);
+        transform.Translate(GameManager.instance.Velocidad * modificarVelocidad * Time.deltaTime * Vector2.left);
     }
 }

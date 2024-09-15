@@ -4,10 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    public static event Action OnStart;
+    public static event Action OnEnd;
+    public static event Action<float> OnSpeedUpdate;
 
     [Header("Variables del juego")]
     [SerializeField]
@@ -17,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     private PlayerController jugador;
     private SpawnObstaculos spawner;
-    private moverSuelo suelo;
+    private MoverSuelo suelo;
 
     [Header("Componentes de la interfaz de usuario")]
     [SerializeField]
@@ -35,6 +40,11 @@ public class GameManager : MonoBehaviour
     private int puntuacion;
 
     bool partidaEnCurso = false;
+
+    public float Velocidad { get => velocidad; }
+
+    public bool PartidaEnCurso { get => partidaEnCurso; }
+
     void Awake()
     {
         instance = this;
@@ -47,7 +57,7 @@ public class GameManager : MonoBehaviour
         inicio.enabled = true;
 
         jugador = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        suelo = GameObject.FindWithTag("Suelo").GetComponent<moverSuelo>();
+        suelo = GameObject.FindWithTag("Suelo").GetComponent<MoverSuelo>();
         spawner = GameObject.FindWithTag("Spawner").GetComponent<SpawnObstaculos>();
     }
 
@@ -55,60 +65,52 @@ public class GameManager : MonoBehaviour
     {
         if(inicio.enabled && Input.anyKey) 
         {
-           iniciarPartida();
+           IniciarPartida();
         }
     }
 
-    public void iniciarPartida()
+    public void IniciarPartida()
     {
         inicio.enabled = false;
         puntaje.enabled = true;
-        manipularComponentes(true);
-        Invoke("aumentarPuntuacion", tiempoParaAumentarPuntuacion);
+        ManipularComponentes(true);
+        Invoke(nameof(AumentarPuntuacion), tiempoParaAumentarPuntuacion);
         partidaEnCurso = true;
+        OnStart?.Invoke();
     }
 
-    void manipularComponentes(bool value)
+    void ManipularComponentes(bool value)
     {
         jugador.enabled = value;
         spawner.enabled = value;
         suelo.enabled = value;
     }
 
-    void aumentarPuntuacion()
+    void AumentarPuntuacion()
     {
         puntuacion++;
         puntaje.text = puntuacion.ToString();
         if(puntuacion % 100 == 0)
         {
-            SoundManager.instance.reproducirSonido("puntaje");
+            SoundManager.instance.ReproducirSonido("puntaje");
             velocidad += incrementoVelocidad;
         }
-        Invoke("aumentarPuntuacion", tiempoParaAumentarPuntuacion);
+        Invoke(nameof(AumentarPuntuacion), tiempoParaAumentarPuntuacion);
     }
-    public void recargarEscena()
+    public void RecargarEscena()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
     }
-    public void perder()
+    public void Perder()
     {
         fin_puntaje.text = puntaje.text;
         fin.enabled = true;
-        manipularComponentes(false);
+        ManipularComponentes(false);
         partidaEnCurso = false;
         Time.timeScale = 0f;
         CancelInvoke("aumentarPuntuacion");
-        SoundManager.instance.reproducirSonido("perder");
-    }
-
-    public float getVelocidad()
-    {
-        return velocidad;
-    }
-
-    public bool empezoLaPartida()
-    {
-        return partidaEnCurso;
+        SoundManager.instance.ReproducirSonido("perder");
+        OnEnd?.Invoke();
     }
 }

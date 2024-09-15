@@ -61,12 +61,12 @@ public class SpawnObstaculos : MonoBehaviour
 
         if (randomizarTiempoRepeticion)
         {
-            actualizarTiempoRepeticion();
+            ActualizarTiempoRepeticion();
         }
         Invoke(nameof(Instanciar), tiempoRepeticion);
     }
 
-    void actualizarTiempoRepeticion()
+    void ActualizarTiempoRepeticion()
     {
         tiempoRepeticion = Random.Range(tiempoRepeticionMIN, tiempoRepeticionMAX);
     }

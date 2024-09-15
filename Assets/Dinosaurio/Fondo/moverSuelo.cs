@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class moverSuelo : MonoBehaviour
+public class MoverSuelo : MonoBehaviour
 {
     private List<Transform> suelos = new List<Transform>();
     private float tamañoSuelo;
@@ -37,7 +37,7 @@ public class moverSuelo : MonoBehaviour
         
         foreach(Transform suelo in suelos)
         {
-            suelo.Translate(Vector2.left * GameManager.instance.getVelocidad() * Time.deltaTime);
+            suelo.Translate(GameManager.instance.Velocidad * Time.deltaTime * Vector2.left);
         }
 
     }
