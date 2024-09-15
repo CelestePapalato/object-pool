@@ -37,7 +37,9 @@ public class ObjectPool : MonoBehaviour
         {
             for (int i = 0; i < poolData.quantity; i++)
             {
-                GameObject tmp = Instantiate(poolData.objectToPool);
+                GameObject tmp = Instantiate(poolData.objectToPool, 
+                                             poolData.objectToPool.transform.position, 
+                                             Quaternion.identity);
                 tmp.SetActive(false);
 
                 if (!taggedPool.ContainsKey(tmp.tag))
@@ -79,5 +81,25 @@ public class ObjectPool : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public GameObject GetRandomObject(string tag)
+    {
+        List<GameObject> list = new List<GameObject>();
+        if (taggedPool.ContainsKey(tag))
+        {
+            foreach (GameObject obj in taggedPool[tag])
+            {
+                if (!obj.activeInHierarchy)
+                {
+                    list.Add(obj);
+                }
+            }
+        }
+
+        if (list.Count == 0) { return null; }
+
+        int r = UnityEngine.Random.Range(0, list.Count);
+        return list[r];
     }
 }
