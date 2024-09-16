@@ -8,12 +8,17 @@ public class ScoreManager : MonoBehaviour
 {
     public static event Action<int> OnScoreUpdate;
     public static event Action<int> OnHighScoreUpdate;
-    private static int highScore;
 
     [SerializeField]
     private float tiempoParaAumentarPuntuacion = .5f;
 
     private int score = 0;
+    private int highScore;
+
+    private void Awake()
+    {
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
+    }
 
     private void OnEnable()
     {
@@ -40,6 +45,7 @@ public class ScoreManager : MonoBehaviour
         if(score > highScore)
         {
             highScore = score;
+            PlayerPrefs.SetInt("HighScore", highScore);
             OnHighScoreUpdate?.Invoke(highScore);
         }
         Invoke(nameof(AumentarPuntuacion), tiempoParaAumentarPuntuacion);
