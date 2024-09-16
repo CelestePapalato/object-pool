@@ -29,15 +29,6 @@ public class GameManager : MonoBehaviour
     private Canvas fin;
     [SerializeField]
     private Canvas inicio;
-    [SerializeField]
-    private TMP_Text puntaje;
-    [SerializeField]
-    private TMP_Text fin_puntaje;
-
-    [SerializeField]
-    private float tiempoParaAumentarPuntuacion = .5f;
-
-    private int puntuacion;
 
     bool partidaEnCurso = false;
 
@@ -50,9 +41,18 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
+    private void OnEnable()
+    {
+        ScoreManager.OnScoreUpdate += ActualizarVelocidad;
+    }
+
+    private void OnDisable()
+    {
+        ScoreManager.OnScoreUpdate -= ActualizarVelocidad;
+    }
+
     private void Start()
     {
-        puntaje.enabled = false;
         fin.enabled = false;
         inicio.enabled = true;
 
@@ -72,9 +72,7 @@ public class GameManager : MonoBehaviour
     public void IniciarPartida()
     {
         inicio.enabled = false;
-        puntaje.enabled = true;
         ManipularComponentes(true);
-        Invoke(nameof(AumentarPuntuacion), tiempoParaAumentarPuntuacion);
         partidaEnCurso = true;
         OnStart?.Invoke();
     }
@@ -86,16 +84,13 @@ public class GameManager : MonoBehaviour
         suelo.enabled = value;
     }
 
-    void AumentarPuntuacion()
+    void ActualizarVelocidad(int puntuacion)
     {
-        puntuacion++;
-        puntaje.text = puntuacion.ToString();
         if(puntuacion % 100 == 0)
         {
             SoundManager.instance.ReproducirSonido("puntaje");
             velocidad += incrementoVelocidad;
         }
-        Invoke(nameof(AumentarPuntuacion), tiempoParaAumentarPuntuacion);
     }
     public void RecargarEscena()
     {
@@ -104,7 +99,6 @@ public class GameManager : MonoBehaviour
     }
     public void Perder()
     {
-        fin_puntaje.text = puntaje.text;
         fin.enabled = true;
         ManipularComponentes(false);
         partidaEnCurso = false;

@@ -415,6 +415,7 @@ GameObject:
   - component: {fileID: 676857805}
   - component: {fileID: 676857807}
   - component: {fileID: 676857806}
+  - component: {fileID: 676857808}
   m_Layer: 5
   m_Name: Puntaje
   m_TagString: Untagged
@@ -538,6 +539,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676857804}
   m_CullTransparentMesh: 1
+--- !u!114 &676857808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676857804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12570260005392241b013aabe25b3cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableOnStart: 0
+  disableOnEnd: 0
 --- !u!1 &694574421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,6 +1323,7 @@ GameObject:
   - component: {fileID: 1779680510}
   - component: {fileID: 1779680512}
   - component: {fileID: 1779680511}
+  - component: {fileID: 1779680513}
   m_Layer: 5
   m_Name: Puntaje
   m_TagString: Untagged
@@ -1431,6 +1447,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1779680509}
   m_CullTransparentMesh: 1
+--- !u!114 &1779680513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779680509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12570260005392241b013aabe25b3cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableOnStart: 1
+  disableOnEnd: 1
 --- !u!1 &1815265040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,7 +1546,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2050950947}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: recargarEscena
+        m_MethodName: RecargarEscena
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1868,6 +1898,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2050950949}
   - component: {fileID: 2050950947}
+  - component: {fileID: 2050950950}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1891,9 +1922,6 @@ MonoBehaviour:
   incrementoVelocidad: 1.25
   fin: {fileID: 1630506981}
   inicio: {fileID: 883659968}
-  puntaje: {fileID: 1779680511}
-  fin_puntaje: {fileID: 676857806}
-  tiempoParaAumentarPuntuacion: 0.1
 --- !u!4 &2050950949
 Transform:
   m_ObjectHideFlags: 0
@@ -1909,6 +1937,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2050950950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050950946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6145519676a36154c8ec40db06960a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiempoParaAumentarPuntuacion: 0.1
 --- !u!1001 &5008653757580275864
 PrefabInstance:
   m_ObjectHideFlags: 0
