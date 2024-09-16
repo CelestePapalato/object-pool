@@ -8,69 +8,80 @@ public class ScoreUI : MonoBehaviour
     bool enableOnStart;
     [SerializeField]
     bool disableOnEnd;
+    [SerializeField]
+    TMP_Text scoreText;
+    [SerializeField]
+    TMP_Text highScoreText;
 
-    TMP_Text text;
+    Canvas canvas;
 
     private void Start()
     {
-        text = GetComponent<TMP_Text>();
-        text.enabled = false;
+        canvas = GetComponent<Canvas>();
+        canvas.enabled = false;
     }
 
     private void OnEnable()
     {
-        ScoreManager.OnScoreUpdate += Int2Text;
+        ScoreManager.OnScoreUpdate += UpdateScore;
+        ScoreManager.OnHighScoreUpdate += UpdateHighScore;
         if (enableOnStart)
         {
-            GameManager.OnStart += EnableText;
+            GameManager.OnStart += EnableCanvas;
         }
         else
         {
-            GameManager.OnStart += DisableText;
+            GameManager.OnStart += DisableCanvas;
         }
         if(disableOnEnd)
         {
-            GameManager.OnEnd += DisableText;
+            GameManager.OnEnd += DisableCanvas;
         }
         else
         {
-            GameManager.OnEnd += EnableText;
+            GameManager.OnEnd += EnableCanvas;
         }
     }
 
     private void OnDisable()
     {
-        ScoreManager.OnScoreUpdate -= Int2Text;
+        ScoreManager.OnScoreUpdate -= UpdateScore;
+        ScoreManager.OnHighScoreUpdate -= UpdateHighScore;
         if (enableOnStart)
         {
-            GameManager.OnStart -= EnableText;
+            GameManager.OnStart -= EnableCanvas;
         }
         else
         {
-            GameManager.OnStart -= DisableText;
+            GameManager.OnStart -= DisableCanvas;
         }
         if (disableOnEnd)
         {
-            GameManager.OnEnd -= DisableText;
+            GameManager.OnEnd -= DisableCanvas;
         }
         else
         {
-            GameManager.OnEnd -= EnableText;
+            GameManager.OnEnd -= EnableCanvas;
         }
     }
 
-    public void Int2Text(int Int)
+    public void UpdateScore(int score)
     {
-        text.text = Int.ToString();
+        scoreText.text = score.ToString();
+    }
+    
+    public void UpdateHighScore(int highScore)
+    {
+        highScoreText.text = highScore.ToString();
     }
 
-    public void EnableText()
+    public void EnableCanvas()
     {
-        if (text) { text.enabled = true; }
+        if (canvas) { canvas.enabled = true; }
     }
 
-    public void DisableText()
+    public void DisableCanvas()
     {
-        if (text) { text.enabled = false; }
+        if (canvas) { canvas.enabled = false; }
     }
 }
