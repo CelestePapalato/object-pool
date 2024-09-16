@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     private float incrementoVelocidad = 0.5f;
 
     private PlayerController jugador;
-    private SpawnObstaculos spawner;
+    private ObstacleSpawner spawner;
     private MoverSuelo suelo;
 
     [Header("Componentes de la interfaz de usuario")]
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
         jugador = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         suelo = GameObject.FindWithTag("Suelo").GetComponent<MoverSuelo>();
-        spawner = GameObject.FindWithTag("Spawner").GetComponent<SpawnObstaculos>();
+        spawner = GameObject.FindWithTag("Spawner").GetComponent<ObstacleSpawner>();
     }
 
     private void Update()

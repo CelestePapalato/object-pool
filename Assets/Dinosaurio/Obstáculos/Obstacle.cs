@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstaculoController : MonoBehaviour
+public class Obstacle : MonoBehaviour
 {
     [SerializeField]
     float modificarVelocidad = 1f;
