@@ -1921,10 +1921,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnObstaculos
       objectReference: {fileID: 0}
-    - target: {fileID: 4321510511075459999, guid: ffe5e458c2c9cc547932f7f4d0d665de, type: 3}
-      propertyPath: randomizarPosicionY
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8263474560525567785, guid: ffe5e458c2c9cc547932f7f4d0d665de, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.47
@@ -1978,10 +1974,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3654004563447537852, guid: 2430d77153ef2ca489a01bd5ce9c087e, type: 3}
-      propertyPath: fuerzaHaciaAbajo
-      value: 35
-      objectReference: {fileID: 0}
     - target: {fileID: 4327428603506417414, guid: 2430d77153ef2ca489a01bd5ce9c087e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
@@ -2041,7 +2033,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3605445506535270885, guid: 4fb23798e434a0a49891d20b562a8325, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.4627886
+      value: 10.2
       objectReference: {fileID: 0}
     - target: {fileID: 3605445506535270885, guid: 4fb23798e434a0a49891d20b562a8325, type: 3}
       propertyPath: m_LocalPosition.y

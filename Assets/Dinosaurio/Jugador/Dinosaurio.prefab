@@ -266,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuerzaDeSalto: 16
   fuerzaDeSaltoBuff: 4
-  fuerzaHaciaAbajo: 2.4
+  fuerzaHaciaAbajo: 35
   tiempoParaAumentarSalto: 0.25
 --- !u!95 &5714647198976152289
 Animator:

@@ -11,6 +11,7 @@ public class Obstacle : MonoBehaviour
     {
         if(transform.position.x <= -10)
         {
+            Debug.Log(Time.realtimeSinceStartup);
             gameObject.SetActive(false);
         }
         transform.Translate(GameManager.instance.Velocidad * modificarVelocidad * Time.deltaTime * Vector2.left);

@@ -24,10 +24,6 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField]
     float tiempoRepeticionMAX = 4f;
 
-    // Variables
-    int cantInstanciamientos;
-    int longitud;
-
     private void Awake()
     {
         if (this.CompareTag("Spawner"))
@@ -48,6 +44,7 @@ public class ObstacleSpawner : MonoBehaviour
         if(obstaculo == null) { return; }
 
         Vector3 posicion = obstaculo.transform.position;
+        posicion.x = transform.position.x;
 
         if (randomizarPosicionY)
         {
@@ -56,8 +53,6 @@ public class ObstacleSpawner : MonoBehaviour
 
         obstaculo.SetActive(true);
         obstaculo.transform.position = posicion;
-
-        cantInstanciamientos++;
 
         if (randomizarTiempoRepeticion)
         {
